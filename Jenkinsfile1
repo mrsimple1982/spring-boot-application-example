@@ -18,7 +18,7 @@ pipeline {
 		stage('Deploy') {
             steps {
                 echo 'Deploy stage triggered'
-				mvn spring-boot:run -Drun.arguments="--server.port=9000"
+				sh "'/usr/bin/mvn' spring-boot:run -Drun.arguments='--server.port=9000'"
 				echo 'Deploy stage Complete'
             }
         }
