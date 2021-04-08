@@ -12,7 +12,6 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Test stage triggered'
-		sh "'/usr/bin/mvn' clean test"
 		sh "docker build -t myapp_server:1.0 ."
 				
             }
