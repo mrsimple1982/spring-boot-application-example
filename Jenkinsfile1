@@ -5,14 +5,14 @@ pipeline {
         stage('Build') {
             steps { 
                 echo 'Build stage triggered'
-				mvn install
+				sh "'/usr/bin/mvn' install"
 				echo 'Build stage Complete'
             }
         }
         stage('Test') {
             steps {
                 echo 'Test stage triggered'
-				mvn clean test
+				sh "'/usr/bin/mvn' clean test"
             }
         }
 		stage('Deploy') {
