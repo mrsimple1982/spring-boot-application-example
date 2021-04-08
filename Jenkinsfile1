@@ -12,14 +12,16 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Test stage triggered'
-				sh "'/usr/bin/mvn' clean test"
+		sh "'/usr/bin/mvn' clean test"
+		sh "docker build -t myapp_server:1.0 ."
+				
             }
         }
 		stage('Deploy') {
             steps {
                 echo 'Deploy stage triggered'
-				sh "'/usr/bin/mvn' spring-boot:run -Drun.arguments='--server.port=9000'"
-				echo 'Deploy stage Complete'
+		docker container run --name web -p 9000:8080 myapp_server:1.0
+		echo 'Deploy stage Complete'
             }
         }
     }   
