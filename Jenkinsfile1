@@ -6,6 +6,7 @@ pipeline {
             steps { 
                 echo 'Build stage triggered'
 				sh "'/usr/bin/mvn' install"
+		sh "cp /root/.m2/repository/com/myapp/myapp_server/0.0.1-SNAPSHOT/myapp_server-0.0.1-SNAPSHOT.jar target"
 				echo 'Build stage Complete'
             }
         }
