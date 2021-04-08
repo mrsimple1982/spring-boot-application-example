@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Build') {
+            steps { 
+                echo 'Build stage triggered'
+				mvn install
+				echo 'Build stage Complete'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Test stage triggered'
+				mvn clean test
+            }
+        }
+		stage('Deploy') {
+            steps {
+                echo 'Deploy stage triggered'
+				mvn spring-boot:run -Drun.arguments="--server.port=9000"
+				echo 'Deploy stage Complete'
+            }
+        }
+    }   
+}
